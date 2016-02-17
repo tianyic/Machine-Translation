@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Welcome to DREAMT
 =================
 **Decoding, Reranking, Evaluation, and Alignment for Machine Translation**
@@ -8,3 +9,7 @@ posted at [the JHU MT classs website](http://mt-class.org/jhu).
 1) Word alignment.
 2) Decoding.
 
+=======
+# EN 600.468 Machine-Translation Repository
+# Instructor: Philipp Koehn
+>>>>>>> origin/master
