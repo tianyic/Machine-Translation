@@ -1,0 +1,16 @@
+import numpy as np
+import sys
+
+data = np.array([[1,1,1],[2,2,2],[3,3,3],[4,4,4]])
+
+vector = np.array([1,0.5,0.25])
+
+print data
+print vector
+
+m = ( data / vector )
+idx = np.argmax(m[:,2])
+idx1 = np.argmax(m[1,:])
+print m
+print idx
+print idx1
