@@ -143,7 +143,3 @@ for ( f, e ) in bitext:
 		sys.stdout.write( "%i-%i " % ( i, max_idx_j ) )
 	sys.stdout.write("\n")	
 
-
-
-
-
