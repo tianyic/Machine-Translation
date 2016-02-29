@@ -22,8 +22,13 @@ print len(tm)
 #print len(lm)
 
 for key, value in tm.iteritems():
+  #print key, value
+  pass
+
+for key, value in lm.table.iteritems():
   print key, value
   pass
+
 #print lm.begin()
 
 

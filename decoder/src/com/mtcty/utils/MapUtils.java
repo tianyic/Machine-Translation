@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.mtcty.datastructure.Ngrams;
 import com.mtcty.datastructure.Pair;
 
 public class MapUtils {
@@ -79,6 +80,20 @@ public class MapUtils {
 			for( Pair pair : entry.getValue() ){
 				System.out.print(" ("+pair.getWord()+", "+pair.getLogprob()+") ");
 			}
+			System.out.println();
+		}
+	}
+	
+	public static void printLM( Map<List<String>, Ngrams> map){
+		for( Map.Entry<List<String>, Ngrams> entry : map.entrySet() ){
+			System.out.print("Ngrams: (");
+			for( String e_word : entry.getKey() ){
+				System.out.print("\""+e_word+"\" ");
+			}
+			System.out.print(" ) ");
+			System.out.print(" ngrams_stats: ");
+			System.out.print(" Logprob: "+ entry.getValue().getLogProb());
+			System.out.print(" BackOff: "+ entry.getValue().getBackOff());
 			System.out.println();
 		}
 	}

@@ -25,7 +25,7 @@ public class DataStream {
 		
 		BufferedReader reader_TM = null;
 		
-		System.out.println("Reading translation model.");
+		System.out.println("Reading translation model from "+fileName+"...");
 		
 		// Create Maps to save Transition Model
 		Map<List<String>, List<Pair>> unsorted_TM = new HashMap<>();
