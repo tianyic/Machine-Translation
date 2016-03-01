@@ -64,6 +64,8 @@ public class MapUtils {
 		
 	}
 	
+	
+	
 	public static void printTM1( Map<String, Pair> map){
 		for( Map.Entry<String, Pair> entry: map.entrySet() ){
 			System.out.println("French Phrase: "+entry.getKey()+" English Phrase: "+entry.getValue().getWord()+" LogProb: "+entry.getValue().getLogprob());

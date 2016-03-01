@@ -68,20 +68,10 @@ public class DataStream {
 					sorted_TM.put( entry.getKey(), sublist );
 				}
 				
-			}
-			
+			}			
 			// free memory of unsorted_TM
 			unsorted_TM.clear();
-			//List<String> test = Arrays.asList("que","le");
 			
-			//MapUtils.printTM2(unsorted_TM);
-//			MapUtils.printTM2(sorted_TM);
-//			for( Pair tmp : sorted_TM.get(test)){
-//				System.out.println(tmp.getWord()+" "+tmp.getLogprob());
-//			}
-//			System.out.println(sorted_TM.get(test).size());
-			//System.out.printl
-			//System.out.println(sorted_TM.size());
 			return sorted_TM;
 			
 		} catch (FileNotFoundException e) {
@@ -90,12 +80,36 @@ public class DataStream {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally{
-			return null;
-		}
+		} 
+		return null;
 	}
 	
-	public static void readLM(String filename, int k){
+	public static List<List<String>> readFreach(String filename){
+		File file_French = new File(filename);
+		
+		BufferedReader reader_French = null;
+		
+		System.out.println("Reading French from "+filename+"...");
+		
+		List<List<String>> Frenches = new ArrayList<>(); 
+		
+		try {
+			reader_French = new BufferedReader(new FileReader(file_French));
+			
+			String line = null;
+			
+			while( (line = reader_French.readLine()) != null ){
+				Frenches.add(Arrays.asList(line.split(" ")));
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			return Frenches;
+		}
 		
 	}
 }
