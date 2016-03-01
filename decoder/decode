@@ -19,15 +19,16 @@ tm = models.TM(opts.tm, opts.k)
 lm = models.LM(opts.lm)
 french = [tuple(line.strip().split()) for line in open(opts.input).readlines()[:opts.num_sents]]
 print len(tm)
+print french
 #print len(lm)
 
-for key, value in tm.iteritems():
-  #print key, value
-  pass
+# for key, value in tm.iteritems():
+#   #print key, value
+#   pass
 
-for key, value in lm.table.iteritems():
-  print key, value
-  pass
+# for key, value in lm.table.iteritems():
+#   print key, value
+#   pass
 
 #print lm.begin()
 
@@ -36,6 +37,7 @@ for key, value in lm.table.iteritems():
 for word in set(sum(french,())):
   if (word,) not in tm:
     tm[(word,)] = [models.phrase(word, 0.0)]
+
 
 # sys.stderr.write("Decoding %s...\n" % (opts.input,))
 # for f in french:
