@@ -1,9 +1,11 @@
 package com.mtcty.dao;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.mtcty.datastructure.Pair;
+import com.mtcty.decoder.Hypothesis;
 import com.mtcty.utils.ListUtils;
 import com.mtcty.utils.MapUtils;
 
@@ -111,5 +114,29 @@ public class DataStream {
 			return Frenches;
 		}
 		
+	}
+	
+	public static void output(List<List<Hypothesis>> translated_sen , String outputfile){
+		BufferedWriter output = null;
+		File file = new File(outputfile);
+		
+		try {
+			output = new BufferedWriter(new FileWriter(file));
+			for( List<Hypothesis> sen : translated_sen ){
+				for( Hypothesis h : sen ){
+					if ( h.getPhrase() != null ){
+						output.write(h.getPhrase().getWord()+" ");
+					}
+					
+				}
+				output.write("\n");
+			}
+			output.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+
+		}
 	}
 }

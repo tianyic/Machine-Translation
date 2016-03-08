@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,10 +42,8 @@ public class LanguageModel {
 					List<String> key = ngram.getWords();
 					this.table.put(key, ngram);
 				}
-				//System.out.println(line);
-				//count++;
+
 			}
-			//System.out.println(count);
 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -56,11 +56,48 @@ public class LanguageModel {
 		
 	}
 	
-	public String begin(){
+	public List<String> begin(){
 		// initial state is always <s>
-		return "<s>";
+		return Arrays.asList("<s>");
 	}
 	
+	public Map score(List<String> state, String word){
+		
+
+		double scoreval = 0.0;
+		List<String> ngram = new ArrayList<>();
+		ngram.addAll(state);
+		ngram.add(word);
+
+		Map returnmap = new HashMap();
+		
+		while( ngram.size() > 0){
+			if( this.table.containsKey(ngram) ){
+				
+				scoreval += this.table.get(ngram).getLogProb();
+				ngram = ngram.subList(ngram.size()-2>=0 ? ngram.size()-2:0, ngram.size());
+				returnmap.put("ngram", ngram);
+				returnmap.put("score", scoreval);
+				return returnmap;
+			}else{ // back off
+				if( ngram.size() >1 ){
+					//System.out.println("back off:"+this.table.get(ngram.subList(0, ngram.size()-1 )).getBackOff() );
+					scoreval += this.table.get(ngram.subList(0, ngram.size()-1 )).getBackOff();
+				}
+				ngram = ngram.subList(1, ngram.size());
+			}
+	
+		}
+		returnmap.put("ngram", new ArrayList<String>());
+		returnmap.put("score", this.table.get(Arrays.asList("<unk>")).getLogProb());
+		return returnmap;
+		
+
+	}
+	
+	public double end(List<String> state){
+		return (double) this.score(state, "</s>").get("score");
+	}
 	
 	
 	

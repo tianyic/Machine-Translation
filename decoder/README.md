@@ -1,33 +1,37 @@
-There are two python programs here (-h for usage):
+# Greedy Decoder 
+### Author: Tianyi Chen, tchen59@jhu.edu
+### Date: March 7, 2016
+### Language: Java
 
--`decode` translates input sentences from French to English.
--`grade` computes the model score of a translated sentence.
+-`greedy-decoder` translates input sentences from French to English by the method described in  
 
-These commands work in a pipeline. For example:
+"A Greedy Decoder for Phrase-Based Statistical Machine Translation"
 
-    > python decode | python compute-model-score
+There is one parameter that can be controlled k---the number of English phrases for one French phrase.
 
-There is also a module:
+To run the code, use the following commands in Terminal:
 
--`model.py` implements very simple interfaces for language models
- and translation models, so you don't have to. 
+	> ./greedy-decoder k
+e.g.
 
-You can finish the assignment without modifying this file at all. 
-You should look at it if you need to understand the interface
-to the translation and language model.
+	> ./greedy-decoder 10
+Then English tranlasted sentences will be generated into output directory, the output file name has the form:
 
-The `data` directory contains files derived from the Canadian Hansards,
-originally aligned by Ulrich Germann:
+	> output_k_x.txt
+e.g.
 
--`input`: French sentences to translate.
+	> output_k_10.txt
 
--`tm`: a phrase-based translation model. Each line is in the form:
 
-    French phrase ||| English phrase ||| log_10(translation_prob)
+-`grade` computes the model score of a translated sentence from Philipp Koehn. To calculate the score of translation, run the following command in Terminal:
 
--`lm`: a trigram language model file in ARPA format.
+    > python compute-model-score < output/output_k_x.txt
+e.g.
 
-    log_10(ngram_prob)   ngram   log_10(backoff_prob)
+	> python compute-model-score < output/output_k_10.txt
 
-The language model and translation model are computed from the data 
-in the align directory, using alignments from the Berkeley aligner.
+Thank you very much!
+
+Best Regards,
+
+Tianyi

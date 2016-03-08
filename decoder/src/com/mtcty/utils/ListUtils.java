@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.mtcty.datastructure.Pair;
+import com.mtcty.decoder.Hypothesis;
 
 public class ListUtils {
 	
@@ -26,4 +27,14 @@ public class ListUtils {
 		});
 	}
 
+	// print List<Hypothesis>
+	public static void printList( List<Hypothesis> hlist ){
+		for( Hypothesis h : hlist ){
+			if( h.getPhrase() != null ){
+				System.out.print(h.getPhrase().getWord()+" ");
+			}
+		}
+		System.out.println();
+	}
+	
 }

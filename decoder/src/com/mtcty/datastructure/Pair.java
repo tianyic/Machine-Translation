@@ -12,6 +12,13 @@ public class Pair {
 		this.logprob = logprob;
 	};
 	
+	public boolean equal(Pair cmppair){
+		if( this.word.equals(cmppair.getWord()) && this.logprob.equals(cmppair.getLogprob()) ){
+			return true;
+		}
+		return false;
+	}
+	
 	public String getWord() {
 		return word;
 	}
@@ -25,5 +32,13 @@ public class Pair {
 		this.logprob = logprob;
 	}
 	
-	
+    public Object clone() {
+        try {
+            return super.clone();
+        }
+        catch (CloneNotSupportedException e) {
+            // This should never happen
+            throw new InternalError(e.toString());
+        }
+    }
 }

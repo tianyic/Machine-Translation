@@ -1,0 +1,2 @@
+javac `find ./src/com/mtcty -name '*.java'` -d bin
+java -cp bin com/mtcty/ui/UI $*

@@ -18,6 +18,15 @@ public class Ngrams {
 		this.words   = Arrays.asList(string.split(" "));
 	}
 	
+    public Object clone() {
+        try {
+            return super.clone();
+        }
+        catch (CloneNotSupportedException e) {
+            // This should never happen
+            throw new InternalError(e.toString());
+        }
+    }
 	public double getLogProb() {
 		return logProb;
 	}

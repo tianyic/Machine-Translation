@@ -11,34 +11,34 @@ import com.mtcty.LM.LanguageModel;
 import com.mtcty.dao.DataStream;
 import com.mtcty.datastructure.Pair;
 import com.mtcty.decoder.GreedyDecoder;
+import com.mtcty.decoder.Hypothesis;
 import com.mtcty.utils.MapUtils;
 
 public class UI {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		String tmfile = "tm";
-		String lmfile = "lm";
-		String frfile = "input";
-		int k = 1;
 		
+		String tmfile = "data/tm";
+		String lmfile = "data/lm";
+		String frfile = "data/input";
+		
+		int k = 1;
+		if( args.length == 1){
+			k = Integer.parseInt(args[0]);
+		}
+
+		int disThreshold = 1;
+		String outputfile = "output/output_k_"+k+".txt";
 		GreedyDecoder gd = new GreedyDecoder();
 		
 		// input data
-		gd.loadData(tmfile, lmfile, frfile, k);
+		gd.loadData(tmfile, lmfile, frfile, k, disThreshold);
 		
-		MapUtils.printTM2(gd.getTM());
 		
-		gd.train();
+		List<List<Hypothesis>> translated_eng = gd.train();
 		
+		DataStream.output(translated_eng, outputfile);
 
-		int sum = 2;
-		plus(1,sum);
-		System.out.println(sum);
 	}
 	
-	public static void plus(int i , int sum){
-		sum = sum + i;
-	}
-
 }
